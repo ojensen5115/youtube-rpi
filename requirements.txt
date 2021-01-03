@@ -1,0 +1,5 @@
+flask
+youtube_search
+
+pafy
+python-vlc

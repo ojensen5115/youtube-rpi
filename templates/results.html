@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<ul style="list-style-type: none; padding: 0">
+	{% for result in results.videos %}
+		<li style="margin-bottom: 10px">
+			<a href="/play/{{ result.id }}" class="playsong">
+				<img src="{{ result.thumbnails[0] }}">
+				{{ result.title }}
+				({{ result.duration }})
+			</a>
+		</li>
+	{% endfor %}
+</ul>
+{% endblock %}

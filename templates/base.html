@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Youtube Player</title>
+		<script src="{{ url_for('static', filename='bootstrap-5.0.0-beta1-dist/js/bootstrap.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='htmx.min.js') }}"></script>
+		<link href="{{ url_for('static', filename='bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css') }}" rel="stylesheet">
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">YouTube Audio Player for RPI</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<!--
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Link</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Dropdown
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="#">Action</a></li>
+								<li><a class="dropdown-item" href="#">Another action</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="#">Something else here</a></li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+						</li>
+					</ul>
+					<form class="d-flex" action="/search">
+						<input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" value="{{ term }}">
+						<button class="btn btn-outline-success" type="submit">Search</button>
+					</form>
+					-->
+				</div>
+			</div>
+		</nav>
+		<div class="container-lg">
+
+			<div style="border: 1px solid #333; border-radius: 4px; display: flex">
+				<div id="player_image">
+					<img id="image_display">
+				</div>
+
+				<div style="flex-grow: 1; padding: 0 20px">
+					<div id="player_title">
+						<span id="title_display" style="font-weight: bold; font-size: x-large">(nothing playing)</span>
+					</div>
+
+					<div id="player_volume_control">
+						<label>Volume</label>
+						(<span id="volume_display" style="font-family: monospace;"></span>)
+						<input id="volume_control" style="width: 100%" type="range" name="vol" min="0" max="100" step="1" value="0">
+					</div>
+
+					<div id="player_seek_control">
+						<label>Seek</label>
+						(<span id="seek_display" style="font-family: monospace;"></span>)
+						<input id="seek_control" style="width: 100%" type="range" name="seek" min="0" max="0" step="1" value="0">
+					</div>
+				</div>
+			</div>
+
+
+			<form class="d-flex" action="/search" style="margin: 10px 0">
+				<input class="form-control me-2" type="text" name="search" placeholder="Search" aria-label="Search" value="{{ term }}">
+				<button class="btn btn-outline-success" type="submit">Search</button>
+			</form>
+
+			{% block content %}
+			{% endblock %}
+		</div>
+		<script src="{{ url_for('static', filename='player.js') }}"></script>
+	</body>
+</html>
