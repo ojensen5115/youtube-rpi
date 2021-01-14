@@ -1,15 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-<ul style="list-style-type: none; padding: 0">
+<div class="row">
 	{% for result in results.videos %}
-		<li style="margin-bottom: 10px">
-			<a href="/play/{{ result.id }}" class="playsong">
-				<img src="{{ result.thumbnails[0] }}">
-				{{ result.title }}
-				({{ result.duration }})
+		<div class="col-md-6">
+			<a href="/play/{{ result.id }}" class="playsong" title="{{ result.title }}">
+				<div class="row">
+					<div class="col-5">
+						<img src="{{ result.thumbnails[0] }}">
+					</div>
+					<div class="col-7">
+						<div class="title">
+							{{ result.title }}
+						</div>
+						<div class="duration">
+							{{ result.duration }}
+						</div>
+					</div>
+				</div>
 			</a>
-		</li>
+		</div>
 	{% endfor %}
-</ul>
+</div>
 {% endblock %}

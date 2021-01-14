@@ -35,7 +35,6 @@ def initialize_vlc(card=0):
 	vlc_player.audio_output_device_set(None, devices[card])
 	vlc_player.audio_set_volume(vlc_volume)
 
-
 initialize_vlc(sound_card)
 
 
@@ -48,7 +47,7 @@ def index():
 @app.route('/search', methods=['GET'])
 def search():
 	term = request.args.get('search', "")
-	results = YoutubeSearch(term, max_results=10)
+	results = YoutubeSearch(term, max_results=16)
 	return render_template('results.html', term=term, results=results)
 
 @app.route('/playerdata')
@@ -78,6 +77,8 @@ def playerdata():
 def play(video_id=None):
 	global vlc_player
 	global video
+	global sound_card
+	initialize_vlc(sound_card)
 	# url = "https://www.youtube.com/watch?v=RknoDIN4j04"
 	url = "https://www.youtube.com/watch?v={}".format(video_id)
 	video = pafy.new(url)
